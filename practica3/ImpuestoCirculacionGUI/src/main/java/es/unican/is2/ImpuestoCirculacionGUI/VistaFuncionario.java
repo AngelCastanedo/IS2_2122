@@ -1,3 +1,6 @@
+package es.unican.is2.ImpuestoCirculacionGUI;
+import es.unican.is2.ImpuestoCirculacionCommon.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;

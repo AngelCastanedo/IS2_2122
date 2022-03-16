@@ -1,3 +1,6 @@
+package es.unican.is2.ImpuestoCirculacionDAO;
+import es.unican.is2.ImpuestoCirculacionCommon.*;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;

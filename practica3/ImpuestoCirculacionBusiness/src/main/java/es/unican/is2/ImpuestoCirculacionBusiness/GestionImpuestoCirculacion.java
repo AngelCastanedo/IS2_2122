@@ -1,3 +1,5 @@
+package es.unican.is2.ImpuestoCirculacionBusiness;
+import es.unican.is2.ImpuestoCirculacionCommon.*;
 /**
  * Clase que implementa la capa de negocio de la aplicacion
  */
@@ -12,36 +14,50 @@ public class GestionImpuestoCirculacion implements IGestionContribuyentes, IGest
 	}
 	
 	public Contribuyente altaContribuyente(Contribuyente c) {
-		// TODO
-		return null;
+		if(contribuyentes.contribuyente(c.getDni()) != null) {
+			return null;
+		}
+		return contribuyentes.creaContribuyente(c);
 	}
 
 	
 	public Contribuyente bajaContribuyente(String dni) throws OperacionNoValida {
-		// TODO
-		return null;		
+		if(contribuyentes.contribuyente(dni) == null) {
+			return null;
+		}
+		if(!contribuyentes.contribuyente(dni).getVehiculos().isEmpty()) {
+			throw new OperacionNoValida("El contribuyente tiene vehiculos a su nombre");
+		}
+		return contribuyentes.eliminaContribuyente(dni);		
 	 }
 	
 	public Contribuyente contribuyente(String dni) {
-		// TODO
-		return null;
+		return contribuyentes.contribuyente(dni);
 	}
 
 	public Vehiculo altaVehiculo(Vehiculo v, String dni) throws OperacionNoValida {
-		// TODO
-		return null;
+		if(vehiculos.vehiculo(v.getMatricula()) == null) {
+			throw new OperacionNoValida("El vehiculo ya existe");
+		}
+		if(contribuyentes.contribuyente(dni) == null) {
+			return null;
+		}
+		contribuyentes.contribuyente(dni).getVehiculos().add(v);
+		return v;
 	}
 
-	@Override
 	public Vehiculo bajaVehiculo(String matricula, String dni) throws OperacionNoValida {
-		// TODO
+		if(contribuyentes.contribuyente(dni) == null || vehiculos.vehiculo(matricula) == null) {
+			return null;
+		}
+		if(contribuyentes.contribuyente(dni).getVehiculos().contains(vehiculos.vehiculo(matricula))) {
+			throw new OperacionNoValida("El vehiculo no pertenece a esa persona");
+		}
 		return null;
 	}
 
-	@Override
 	public Vehiculo vehiculo(String matricula) {
-		// TODO
-		return null;
+		return vehiculos.vehiculo(matricula);
 	}	
 }
 
