@@ -1,6 +1,7 @@
 package es.unican.is2.ImpuestoCirculacionCommon;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -12,14 +13,25 @@ public class Contribuyente implements Serializable {
     private String apellido2;
     private String dni;
     
-    /**
+    public Contribuyente(String string, String string2, String string3, String string4) {
+    	vehiculos = new LinkedList<Vehiculo>();
+		nombre = string;
+		apellido1 = string2;
+		apellido2 = string3;
+		dni = string4;
+	}
+
+	/**
      * Retorna el total a pagar por el impuesto 
      * de circulacion de todos sus vehiculos
      * @return Valor del impuesto a pagar
      */
     public double totalAPagar() {
-    	//TODO
-    	return 0;
+    	double p = 0;
+    	for(Vehiculo v : vehiculos) {
+    		p+=v.precioImpuesto();
+    	}
+    	return p;
     }
     
     /**

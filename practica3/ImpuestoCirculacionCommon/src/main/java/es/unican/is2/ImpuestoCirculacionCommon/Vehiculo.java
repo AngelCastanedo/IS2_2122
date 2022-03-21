@@ -10,6 +10,12 @@ public abstract class Vehiculo implements Serializable{
     private String matricula;
 	private LocalDate fechaMatriculacion;	
 
+	public Vehiculo(String string, LocalDate minusYears) {
+		matricula = string;
+		fechaMatriculacion = minusYears;
+	}
+
+
 	/**
      * Retorna el valor del impuesto de circulacion
      *  @return valor del impuesto circulacion

@@ -1,6 +1,7 @@
 package es.unican.is2.ImpuestoCirculacionCommon;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @SuppressWarnings("serial")
 public class Turismo
@@ -9,6 +10,12 @@ public class Turismo
 
 	private double potencia;
 	
+	public Turismo(String string, LocalDate minusYears, double i) {
+		super(string,minusYears);
+		potencia = i;
+	}
+
+
 	/**
 	 * Retorna la potencia del turismo
 	 * @return potencia en caballos fiscales
@@ -24,8 +31,19 @@ public class Turismo
      */
 	@Override
     public double precioImpuesto() {
-		// TODO
-    	return 0;
+		if(getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25))) {
+			return 0;
+		}
+		if(potencia < 8) {
+			return 25.24;
+		} else if (potencia < 12) {
+			return 68.16;
+		} else if (potencia < 16) {
+			return 143.88;
+		} else if (potencia < 20) {
+			return 179.22;
+		}
+		return 224;
     }
     
 }
