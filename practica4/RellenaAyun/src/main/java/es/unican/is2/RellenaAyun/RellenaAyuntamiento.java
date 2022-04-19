@@ -19,7 +19,7 @@ public class RellenaAyuntamiento {
 		// Primer contribuyente
 		Contribuyente c1 = new Contribuyente("Pepe", "López", "Martínez", "11111111A");
 		Turismo t1 = new Turismo("1111-AAA", LocalDate.now().minusYears(15), 20);
-		Furgoneta f1 = new Furgoneta("1111-BBB", LocalDate.now().minusMonths(15), 50.0);
+		Furgoneta f1 = new Furgoneta("1111-BBB", LocalDate.now().minusMonths(15), 50);
 		c1.getVehiculos().add(t1);
 		c1.getVehiculos().add(f1);
 		
@@ -35,7 +35,7 @@ public class RellenaAyuntamiento {
 		Turismo t3 = new Turismo("3333-AAA", LocalDate.now().minusYears(4).minusMonths(3).minusDays(23), 100);
 		Turismo t3b = new Turismo("3333-BBB", LocalDate.now().minusYears(9).minusMonths(10).minusDays(3), 5);
 		c3.getVehiculos().add(t3);
-		c3.getVehiculos().add(t3b);
+		c3.getVehiculos().add(t3b);	
 		
 		Ayuntamiento ay= new Ayuntamiento();
 		ay.getContribuyentes().add(c1);
