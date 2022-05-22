@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTiendaRef.gui;
+package es.unican.is2.gestiontiendarefsonar.gui;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import es.unican.is2.gestionTiendaRef.Tienda;
-import es.unican.is2.gestionTiendaRef.Vendedor;
+import es.unican.is2.gestiontiendarefsonar.Tienda;
+import es.unican.is2.gestiontiendarefsonar.Vendedor;
 import fundamentos.Menu;
 import fundamentos.Lectura;
 import fundamentos.Mensaje;
@@ -22,7 +22,9 @@ public class GestionComisiones {
 	 */
 	public static void main(String[] args) {
 		// opciones del menu
-		final int NUEVA_VENTA = 0, VENDEDOR_DEL_MES = 1, VENDEDORES = 2;
+		final int NUEVA_VENTA = 0;
+		final int VENDEDOR_DEL_MES = 1;
+		final int VENDEDORES = 2;
 
 		// variables auxiliares
 		String dni; 
@@ -69,36 +71,48 @@ public class GestionComisiones {
 				vendedores = tienda.vendedores();
 				resultado = new LinkedList<Vendedor>();
 				double maxVentas = 0.0;
-				for (Vendedor v : vendedores) {
-					if (v.getTotalVentas() > maxVentas) {
-						maxVentas = v.getTotalVentas();
-						resultado.clear();
-						resultado.add(v);
-					} else if (v.getTotalVentas() == maxVentas) {
-						resultado.add(v);
-					}
-				}
+				for1(vendedores, resultado, maxVentas);
 
-				msj = "";
+				StringBuilder bld = new StringBuilder();
 				for (Vendedor vn : resultado) {
-					msj += vn.getNombre() + "\n";
+					bld.append(vn.getNombre());
+					bld.append("\n");
 				}
+				msj = bld.toString();
 				mensaje("VENDEDORES DEL MES", msj);
 				break;
 
 			
-		case VENDEDORES:
-
-			vendedores = tienda.vendedores();
-			System.out.println(vendedores.size());
-			Collections.sort(vendedores, new ComparadorVendedorVentas());			
-			msj = "";
-			for (Vendedor vn : vendedores) {
-				msj += vn.getNombre() + " " + vn.getTotalVentas() + "\n";
+			case VENDEDORES:
+	
+				vendedores = tienda.vendedores();
+				System.out.println(vendedores.size());
+				Collections.sort(vendedores, new ComparadorVendedorVentas());	
+				StringBuilder bld2 = new StringBuilder();
+				for (Vendedor vn : vendedores) {
+					bld2.append(vn.getNombre());
+					bld2.append(" ");
+					bld2.append(vn.getTotalVentas());
+					bld2.append("\n");
+				}
+				msj = bld2.toString();
+				mensaje("VENDEDORES", msj);
+				break;
+			default:
+				break;
 			}
-			mensaje("VENDEDORES", msj);
-			break;
 		}
+	}
+
+	private static void for1(List<Vendedor> vendedores, List<Vendedor> resultado, double maxVentas) {
+		for (Vendedor v : vendedores) {
+			if (v.getTotalVentas() > maxVentas) {
+				maxVentas = v.getTotalVentas();
+				resultado.clear();
+				resultado.add(v);
+			} else if (v.getTotalVentas() == maxVentas) {
+				resultado.add(v);
+			}
 		}
 	}
 

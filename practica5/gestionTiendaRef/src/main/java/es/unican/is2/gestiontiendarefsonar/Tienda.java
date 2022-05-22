@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTiendaRef;
+package es.unican.is2.gestiontiendarefsonar;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,6 +18,12 @@ import java.util.Scanner;
  */
 public class Tienda {
 
+	private static final String NOMBRE2 = "  Nombre: ";
+	private static final String ID = " Id: ";
+	private static final String DNI = " DNI: ";
+	private static final String TOTAL_VENTAS_MES = " TotalVentasMes: ";
+	private static final String PRACTICAS = "Prácticas";
+	private static final String JUNIOR = "Junior";
 	private LinkedList<Vendedor> lista = new LinkedList<Vendedor>();
 	private String direccion;
 	private String nombre;
@@ -124,42 +130,42 @@ public class Tienda {
 			in.next();
 			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) {   //+2WMC +2CCog
+			while (in.hasNext() && !in.next().equals(JUNIOR)) {   //+2WMC +2CCog
 
-				String nombre = in.next();
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
+				ven = new VendedorEnPlantilla(nom, idIn, dni, TipoVendedor.SENIOR);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) {   //+2WMC +2CCog
-				String nombre = in.next();
+			while (in.hasNext() && !in.next().equals(PRACTICAS)) {   //+2WMC +2CCog
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
+				ven = new VendedorEnPlantilla(nom, idIn, dni, TipoVendedor.JUNIOR);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) {   //+1WMC +1CCog
 				in.next();
-				String nombre = in.next();
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
+				ven = new VendedorEnPracticas(nom, idIn, dni);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
@@ -196,42 +202,42 @@ public class Tienda {
 			in.next();
 			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) {   //+2WMC +2CCog
+			while (in.hasNext() && !in.next().equals(JUNIOR)) {   //+2WMC +2CCog
 
-				String nombre = in.next();
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
+				ven = new VendedorEnPlantilla(nom, idIn, dni, TipoVendedor.SENIOR);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Prácticas")) {   //+2WMC +2CCog
-				String nombre = in.next();
+			while (in.hasNext() && !in.next().equals(PRACTICAS)) {   //+2WMC +2CCog
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
+				ven = new VendedorEnPlantilla(nom, idIn, dni, TipoVendedor.JUNIOR);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
 			while (in.hasNext()) {   //+1WMC +1CCog
 				in.next();
-				String nombre = in.next();
+				String nom = in.next();
 				in.next();
 				String idIn = in.next();
 				in.next();
 				String dni= in.next();
 				in.next();
 				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
+				ven = new VendedorEnPracticas(nom, idIn, dni);
 				ven.setT(totalVentas);
 				lista.add(ven);
 			}
@@ -271,21 +277,21 @@ public class Tienda {
 			out.println("Senior");
 			for (Vendedor v : senior) {   //+1WMC +1CCog
 				VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v1.getNombre() + " Id: " + v1.getId() + " DNI: "+ v1.getDni()+" TotalVentasMes: "
+				out.println(NOMBRE2 + v1.getNombre() + ID + v1.getId() + DNI+ v1.getDni()+TOTAL_VENTAS_MES
 						+ v1.getTotalVentas());
 			}
 			out.println();
-			out.println("Junior");
+			out.println(JUNIOR);
 			for (Vendedor v : junior) {   //+1WMC +1CCog
 				VendedorEnPlantilla v2 = (VendedorEnPlantilla) v;
-				out.println("  Nombre: " + v2.getNombre() + " Id: " + v2.getId() + " DNI: "+ v2.getDni()+" TotalVentasMes: "
+				out.println(NOMBRE2 + v2.getNombre() + ID + v2.getId() + DNI+ v2.getDni()+TOTAL_VENTAS_MES
 						+ v2.getTotalVentas());
 			}
 			out.println();
-			out.println("Prácticas");
+			out.println(PRACTICAS);
 			for (Vendedor v : practicas) {   //+1WMC +1CCog
-				Vendedor v3 = (Vendedor) v;
-				out.println("  Nombre: " + v3.getNombre() + " Id: " + v3.getId() + " DNI: "+ v3.getDni()+" TotalVentasMes: "
+				Vendedor v3 = v;
+				out.println(NOMBRE2 + v3.getNombre() + ID + v3.getId() + DNI+ v3.getDni()+TOTAL_VENTAS_MES
 						+ v3.getTotalVentas());
 			}
 
@@ -296,7 +302,7 @@ public class Tienda {
 	}
 
 	private void forVuelcaDatos(List<Vendedor> senior, List<Vendedor> junior, List<Vendedor> practicas, Vendedor v) {  //+1WMC
-		if (v instanceof vendedorEnPracticas) {   //+1WMC +1CCog
+		if (v instanceof VendedorEnPracticas) {   //+1WMC +1CCog
 			practicas.add(v);
 		} else if (v instanceof VendedorEnPlantilla) {   //+2WMC +1CCog
 			VendedorEnPlantilla vp = (VendedorEnPlantilla) v;

@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTiendaRef;
+package es.unican.is2.gestiontiendarefsonar;
 
 
 /**
@@ -19,7 +19,7 @@ public abstract class Vendedor {
 	private double t;
 	private String dni;
 	
-	public Vendedor(String nombre, String id, String dni) {   //+1WMC
+	protected Vendedor(String nombre, String id, String dni) {   //+1WMC
 		this.nombre = nombre;
 		this.id = id;
 		this.dni =dni;
@@ -70,13 +70,10 @@ public abstract class Vendedor {
 
 
 	double switchAnhade(double importeFinal) {  //+1WMC
-		switch (((VendedorEnPlantilla) this).tipo()) {     //+1CCog
-		case JUNIOR:   //+1WMC
+		if(((VendedorEnPlantilla)this).tipo().equals(TipoVendedor.JUNIOR)){
 			importeFinal += importeFinal * JUNIOR_PLUS;
-			break;
-		case SENIOR:   //+1WMC
+		} else {
 			importeFinal += importeFinal * SENIOR_PLUS;
-			break;
 		}
 		return importeFinal;
 	}

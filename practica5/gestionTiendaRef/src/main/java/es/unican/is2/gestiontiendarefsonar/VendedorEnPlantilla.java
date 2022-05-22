@@ -1,4 +1,4 @@
-package es.unican.is2.gestionTiendaRef;
+package es.unican.is2.gestiontiendarefsonar;
 
 
 public class VendedorEnPlantilla extends Vendedor {
@@ -27,5 +27,10 @@ public class VendedorEnPlantilla extends Vendedor {
 			return false;
 		VendedorEnPlantilla v = (VendedorEnPlantilla) obj;
 		return (v.getId().equals(getId()) && v.getDni().equals(getDni())); //+1CCog
+	}
+	
+	@Override
+	public int hashCode() {
+		return 0;
 	}
 }
